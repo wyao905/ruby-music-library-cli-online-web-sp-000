@@ -47,6 +47,7 @@ class MusicLibraryController
       puts "#{i + 1}. #{sorted[i]}"
       i += 1
     end
+  end
     
   def list_genres
     num = Genre.all.size
