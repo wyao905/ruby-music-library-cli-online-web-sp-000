@@ -22,6 +22,7 @@ class MusicLibraryController
     
     command = gets
     while command != "exit" do
+      if command == 
       command = gets
     end
   end
