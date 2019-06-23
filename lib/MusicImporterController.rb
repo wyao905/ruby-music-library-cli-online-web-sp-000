@@ -1,10 +1,11 @@
 require 'pry'
 
 class MusicLibraryController
-  attr_reader :new_instance
+  attr_reader :new_instance, :song_list
   
   def initialize(file_path = "./db/mp3s")
     @new_instance = MusicImporter.new(file_path)
+    @song_list = []
     new_instance.import
   end
   
@@ -27,16 +28,13 @@ class MusicLibraryController
   
   def list_songs
     num = new_instance.files.size
-    list = []
-    new_instance.files.each {|file| list << file.chomp(".mp3").split(" - ")}
-    sorted = list.sort{|a, b| a[1] <=> b[1]}
+    new_instance.files.each {|file| song_list << file.chomp(".mp3").split(" - ")}
+    sorted = song_list.sort{|a, b| a[1] <=> b[1]}
     i = 0
     while i < num do
-      list[i] = "#{i + 1}. #{sorted[i].join(" - ")}"
       puts "#{i + 1}. #{sorted[i].join(" - ")}"
       i += 1
     end
-    list
   end
   
   def list_artists
@@ -85,8 +83,10 @@ class MusicLibraryController
   
   def play_song
     puts "Which song number would you like to play?"
-    input = gets.strip
-    puts "Playing #{list_songs[input.to_i - 1]}"
-    binding.pry
+    input = gets.strip.to_i
+    list = list_songs
+    if input > 0 && input <= song_list.size)
+      puts "Playing #{list[input - 1]}"
+    end
   end
 end
