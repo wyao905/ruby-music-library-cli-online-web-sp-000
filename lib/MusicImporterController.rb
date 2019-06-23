@@ -23,7 +23,8 @@ class MusicLibraryController
     command = gets
     while command != "exit" do
       case command
-      
+      when "list songs"
+        
       command = gets
     end
   end
