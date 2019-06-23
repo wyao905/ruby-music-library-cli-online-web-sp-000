@@ -24,6 +24,7 @@ class MusicLibraryController
     while command != "exit" do
       case command
       when "list songs"
+        list_songs
         
       command = gets
     end
