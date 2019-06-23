@@ -35,7 +35,7 @@ class MusicLibraryController
         list_genre
       when "play song"
         play_song
-        
+      end
       command = gets
     end
   end
