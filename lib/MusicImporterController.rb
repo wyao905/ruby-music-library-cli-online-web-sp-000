@@ -83,10 +83,11 @@ class MusicLibraryController
   
   def play_song
     puts "Which song number would you like to play?"
-    input = gets.strip.to_i
-    list = list_songs
-    if input > 0 && input <= song_list.size)
-      puts "Playing #{list[input - 1]}"
+    input = gets.to_i
+    if input > 0 && input <= new_instance.files.size
+      new_instance.files.each {|file| song_list << file.chomp(".mp3").split(" - ")}
+      sorted = song_list.sort{|a, b| a[1] <=> b[1]}
+      puts "Playing #{sorted[input - 1][1]} by #{sorted[input - 1][0]}"
     end
   end
 end
